@@ -32,9 +32,18 @@ cd src && mv .keys.js keys.js
 Update the value of `YouTube` in your `keys.js` file using an API key from [YouTube](https://developers.google.com/youtube/v3/getting-started):
 ```
 YouTube: '<KEY>',
-
 ```
 Boot up your server by running:
 ```
 npm start
 ```
+
+## Dependencies
+- React
+- Material-ui
+- Axios
+- Moment
+
+## Screenshot
+
+!["Desktop Screenshot"](https://github.com/fiveache/React-YouTube/blob/master/docs/screen.png?raw=true)
