@@ -20,7 +20,10 @@ const VideoDetail = ({ video }) => (
         {video.snippet.description && (<p>{video.snippet.description}</p>)}
       </div>
     </React.Fragment>
-    )) || <p>Loading...</p>}
+    ))
+    || (
+      <div className="ui active centered inline loader" style={{ margin: 'auto', 'margin-top': '200px' }} />
+    )}
   </div>
 );
 
