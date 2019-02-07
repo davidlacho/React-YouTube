@@ -15,6 +15,17 @@ class App extends Component {
     this.selectVideo = this.selectVideo.bind(this);
   }
 
+  componentDidMount() {
+    this.searchVideos('David Lacho');
+  }
+
+  selectVideo(video) {
+    this.setState({
+      selectedVideo: video,
+    });
+    this.changeTitle(video.snippet.title);
+  }
+
   searchVideos(q) {
     YouTube.get('/search', {
       params: {
@@ -23,23 +34,29 @@ class App extends Component {
       },
     })
       .then((res) => {
-        this.setState({ videos: res.data.items });
+        this.setState({
+          videos: res.data.items,
+          selectedVideo: res.data.items[0],
+        });
+        this.changeTitle(res.data.items[0].snippet.title);
       });
   }
 
-  selectVideo(video) {
-    this.setState({
-      selectedVideo: video,
-    });
+  changeTitle(title) {
+    document.title = `Video Search | ${title}`;
   }
 
   render() {
     return (
-      <div className="App ui container">
+      <React.Fragment>
         <SearchBar onFormSubmit={this.searchVideos} />
-        <VideoDetail video={this.state.selectedVideo}/>
-        <VideoList videos={this.state.videos} onVideoSelect={this.selectVideo} />
-      </div>
+        <div className="App ui container">
+          <div className="ui grid">
+            <VideoDetail video={this.state.selectedVideo}/>
+            <VideoList videos={this.state.videos} onVideoSelect={this.selectVideo} />
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }

@@ -9,7 +9,7 @@ const VideoList = (props) => {
   );
 
   return (
-    <div className="video-list ui relaxed divided list">
+    <div className="video-list ui relaxed divided list five wide column">
       {renderedList}
     </div>
   );
